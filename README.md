@@ -59,20 +59,7 @@ print("Final answer:\n", final)
 If you prefer to access the full parsed scratchpad, you can call `wrap_with_scratchpad_instruction()` and `parse_scratchpad_response()` directly (see `utils/scratchpad.py`).
 
 
-### 2) Run a local model server (optional)
-
-If you want to run a local model (e.g., `microsoft/Phi-4-mini-reasoning`) and have the client talk to it using an OpenAI-compatible API:
-
-```bash
-export MODEL_PATH="microsoft/Phi-4-mini-reasoning"
-python utils/model_server.py
-# Server will listen on http://0.0.0.0:1234 by default
-```
-
-Then set `OPENAI_MODEL` to the server model id (or adjust `common_utils` to point at your local endpoint). `utils/model_server.py` implements a basic `/v1/chat/completions` endpoint compatible with the wrapper in `utils/common_utils.py`.
-
-
-### 3) Running TruthfulQA evaluation
+### 2) Running TruthfulQA evaluation
 
 `utils/eval_TruthfulQA.py` provides a small harness that evaluates the model with and without the scratchpad. It uses a custom `CustomModel` wrapper which calls `get_response()` or `get_scratchpad_response()` depending on the `scratchpad` flag.
 
